@@ -27,5 +27,8 @@ interface EcsCloudClientParameters {
     val imagesData: List<EcsCloudImageData>
     val instanceLimit: Int
     val awsCredentials: AWSCredentials?
+
+    //update interface to provide iamRoleArn
+    val iamRoleArn: String?
 }
 

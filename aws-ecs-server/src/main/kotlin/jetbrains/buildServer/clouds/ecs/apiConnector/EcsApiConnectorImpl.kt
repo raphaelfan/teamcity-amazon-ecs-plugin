@@ -19,6 +19,8 @@ package jetbrains.buildServer.clouds.ecs.apiConnector
 import com.amazonaws.ClientConfiguration
 import com.amazonaws.auth.AWSCredentials
 import com.amazonaws.auth.AWSCredentialsProvider
+//Added for assume role
+import com.amazonaws.auth.STSAssumeRoleSessionCredentialsProvider
 import com.amazonaws.services.cloudwatch.AmazonCloudWatch
 import com.amazonaws.services.cloudwatch.AmazonCloudWatchClientBuilder
 import com.amazonaws.services.cloudwatch.model.Dimension
@@ -34,7 +36,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 
-class EcsApiConnectorImpl(awsCredentials: AWSCredentials?, awsRegion: String?) : EcsApiConnector {
+class EcsApiConnectorImpl(awsCredentials: AWSCredentials?, awsRegion: String?, iamRoleArn: String?) : EcsApiConnector {
     private val LOG = Logger.getInstance(EcsApiConnectorImpl::class.java.getName())
     private val ecs: AmazonECS
     private val cloudWatch: AmazonCloudWatch
@@ -79,6 +81,20 @@ class EcsApiConnectorImpl(awsCredentials: AWSCredentials?, awsRegion: String?) :
                     //no-op
                 }
             })
+        } else {
+            //execute this if role arn is provided
+            if(iamRoleArn != null){
+
+                //https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/STSAssumeRoleSessionCredentialsProvider.Builder.html
+                //Build the assume role credential provider
+                val stsCredentialsProvider = STSAssumeRoleSessionCredentialsProvider.Builder(iamRoleArn, "teamcity_session")
+                    .build()
+
+                //https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/ecs/AmazonECSClientBuilder.html
+                //https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/STSAssumeRoleSessionCredentialsProvider.html
+                ecsBuilder.withCredentials(stsCredentialsProvider)
+            }
+
         }
         ecs = ecsBuilder.build()
 
@@ -144,7 +160,7 @@ class EcsApiConnectorImpl(awsCredentials: AWSCredentials?, awsRegion: String?) :
 
     override fun listTaskDefinitions(): List<String> {
         var taskDefArns:List<String> = ArrayList()
-        var nextToken: String? = null;
+        var nextToken: String? = null
         do{
             var request = ListTaskDefinitionsRequest()
             if(nextToken != null) request = request.withNextToken(nextToken)
@@ -174,7 +190,7 @@ class EcsApiConnectorImpl(awsCredentials: AWSCredentials?, awsRegion: String?) :
 
     private fun listTasks(cluster: String?, startedBy: String?, desiredStatus:DesiredStatus): List<String> {
         var taskArns:List<String> = ArrayList()
-        var nextToken: String? = null;
+        var nextToken: String? = null
         do{
             var listTasksRequest = ListTasksRequest()
                     .withCluster(cluster)

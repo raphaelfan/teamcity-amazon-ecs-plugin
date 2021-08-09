@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/aws-ecs-agent/aws-ecs-agent.iml" filepath="$PROJECT_DIR$/aws-ecs-agent/aws-ecs-agent.iml" />
-      <module fileurl="file://$PROJECT_DIR$/aws-ecs-common/aws-ecs-common.iml" filepath="$PROJECT_DIR$/aws-ecs-common/aws-ecs-common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/aws-ecs-server/aws-ecs-server.iml" filepath="$PROJECT_DIR$/aws-ecs-server/aws-ecs-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/teamcity-amazon-ecs-plugin.iml" filepath="$PROJECT_DIR$/teamcity-amazon-ecs-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aws-ecs-agent/teamcity-amazon-ecs-plugin.aws-ecs-agent.iml" filepath="$PROJECT_DIR$/.idea/modules/aws-ecs-agent/teamcity-amazon-ecs-plugin.aws-ecs-agent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aws-ecs-agent/teamcity-amazon-ecs-plugin.aws-ecs-agent.main.iml" filepath="$PROJECT_DIR$/.idea/modules/aws-ecs-agent/teamcity-amazon-ecs-plugin.aws-ecs-agent.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aws-ecs-agent/teamcity-amazon-ecs-plugin.aws-ecs-agent.test.iml" filepath="$PROJECT_DIR$/.idea/modules/aws-ecs-agent/teamcity-amazon-ecs-plugin.aws-ecs-agent.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aws-ecs-common/teamcity-amazon-ecs-plugin.aws-ecs-common.iml" filepath="$PROJECT_DIR$/.idea/modules/aws-ecs-common/teamcity-amazon-ecs-plugin.aws-ecs-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aws-ecs-common/teamcity-amazon-ecs-plugin.aws-ecs-common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/aws-ecs-common/teamcity-amazon-ecs-plugin.aws-ecs-common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aws-ecs-common/teamcity-amazon-ecs-plugin.aws-ecs-common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/aws-ecs-common/teamcity-amazon-ecs-plugin.aws-ecs-common.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aws-ecs-server/teamcity-amazon-ecs-plugin.aws-ecs-server.iml" filepath="$PROJECT_DIR$/.idea/modules/aws-ecs-server/teamcity-amazon-ecs-plugin.aws-ecs-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aws-ecs-server/teamcity-amazon-ecs-plugin.aws-ecs-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/aws-ecs-server/teamcity-amazon-ecs-plugin.aws-ecs-server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aws-ecs-server/teamcity-amazon-ecs-plugin.aws-ecs-server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/aws-ecs-server/teamcity-amazon-ecs-plugin.aws-ecs-server.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/teamcity-amazon-ecs-plugin.main.iml" filepath="$PROJECT_DIR$/.idea/modules/teamcity-amazon-ecs-plugin.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/teamcity-amazon-ecs-plugin.test.iml" filepath="$PROJECT_DIR$/.idea/modules/teamcity-amazon-ecs-plugin.test.iml" />
     </modules>
   </component>
 </project>

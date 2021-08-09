@@ -38,11 +38,16 @@ class EcsCloudClientParametersImpl(private val genericParams: CloudClientParamet
     override val imagesData: List<EcsCloudImageData>
         get() = genericParams.cloudImages.map { EcsCloudImageData(it) }
 
-    //NOTE: copy pasted from jetbrains.buildServer.util.amazon.AWSCommonParams
-
     override val awsCredentials: AWSCredentials?
         get() {
             return genericParams.parameters.toAwsCredentials()
+        }
+
+    //Added this to provide iam role arn
+    override val iamRoleArn: String?
+        get() {
+            //need to find out the key name that stores the iam role, IAM_ROLE_ARN_PARAM is a filler.
+            return getIamRoleArn(genericParams.parameters)
         }
 }
 
@@ -54,6 +59,15 @@ fun Map<String, String>.toAwsCredentials(): AWSCredentials? {
         null
     else
         BasicAWSCredentials(accessKeyId, secretAccessKey)
+}
+
+private fun getIamRoleArn(params: Map<String, String>): String? {
+    //not sure where to find the name of the key that store the role arn, using IAM_ROLE_ARN_PARAM as a filler for now
+    val iamRoleArn = params[IAM_ROLE_ARN_PARAM]
+    return if (StringUtil.isNotEmpty(iamRoleArn))
+        iamRoleArn
+    else
+        null
 }
 
 private fun isUseDefaultCredentialProviderChain(params: Map<String, String>): Boolean {

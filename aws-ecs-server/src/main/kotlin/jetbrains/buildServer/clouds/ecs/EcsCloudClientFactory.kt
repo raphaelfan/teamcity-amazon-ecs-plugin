@@ -74,7 +74,9 @@ class EcsCloudClientFactory(cloudRegister: CloudRegistrar,
 
     override fun createNewClient(state: CloudState, params: CloudClientParameters): CloudClientEx {
         val ecsParams = params.toEcsParams()
-        val apiConnector = EcsApiConnectorImpl(ecsParams.awsCredentials, ecsParams.region)
+        // pass iam role arn to the api Connector
+        //val apiConnector = EcsApiConnectorImpl(ecsParams.awsCredentials, ecsParams.region)
+        val apiConnector = EcsApiConnectorImpl(ecsParams.awsCredentials, ecsParams.region, ecsParams.iamRoleArn)
         val serverUUID = serverSettings.serverUUID!!
         val images = ecsParams.imagesData.map{
             val image = it.toImage(apiConnector, serverUUID, idxStorage, state.profileId)
